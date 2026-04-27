@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --accent: #dc2626;
+  --accent-soft: rgba(220, 38, 38, 0.45);
+  --glow: rgba(248, 113, 113, 0.35);
+}
+
+@theme inline {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+.site-backdrop {
+  background-color: #09090b;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    radial-gradient(900px 520px at 12% -8%, rgba(220, 38, 38, 0.2), transparent 55%),
+    radial-gradient(700px 420px at 92% 0%, rgba(185, 28, 28, 0.12), transparent 50%),
+    radial-gradient(60% 80% at 50% 100%, rgba(9, 9, 11, 1), #09090b);
+  background-size: 48px 48px, 48px 48px, auto, auto, auto;
+}
+
+/* Featured seasonal offer banner — motion (disabled when user prefers reduced motion) */
+@keyframes offer-banner-shimmer {
+  0% {
+    transform: translateX(-140%) skewX(-16deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.22;
+  }
+  55% {
+    opacity: 0.06;
+  }
+  100% {
+    transform: translateX(220%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+
+@keyframes offer-banner-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.88;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes offer-banner-title-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes offer-banner-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(248, 113, 113, 0.55);
+  }
+  50% {
+    opacity: 0.85;
+    box-shadow: 0 0 0 10px rgba(248, 113, 113, 0);
+  }
+}
+
+@keyframes offer-banner-edge-pulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes offer-banner-peek {
+  0%,
+  100% {
+    border-color: rgba(239, 68, 68, 0.32);
+  }
+  50% {
+    border-color: rgba(248, 113, 113, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .offer-banner--collapsed {
+    animation: offer-banner-peek 3.2s ease-in-out infinite;
+  }
+
+  .offer-banner--expanded .offer-banner-shimmer {
+    animation: offer-banner-shimmer 8.5s ease-in-out infinite;
+  }
+
+  .offer-banner--expanded .offer-banner-glow-layer {
+    animation: offer-banner-glow-pulse 5s ease-in-out infinite;
+  }
+
+  .offer-banner--expanded .offer-banner-glow-layer:nth-of-type(2) {
+    animation-delay: -1.2s;
+  }
+
+  .offer-banner--expanded .offer-banner-title {
+    animation: offer-banner-title-in 0.75s ease-out both;
+  }
+
+  .offer-banner--expanded .offer-banner-body {
+    animation: offer-banner-title-in 0.85s ease-out 0.12s both;
+  }
+
+  .offer-banner-dot {
+    animation: offer-banner-dot-pulse 2.2s ease-out infinite;
+  }
+
+  .offer-banner--expanded .offer-banner-edge-glow {
+    animation: offer-banner-edge-pulse 3.5s ease-in-out infinite;
+  }
+}
+
