@@ -130,7 +130,7 @@ export function VehicleDetail({ vehicle: v }: Props) {
             ))}
           </ul>
           <h2 className="mt-10 text-lg font-semibold text-white">
-            From our sales team
+            Description
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-400">
             {v.description}
